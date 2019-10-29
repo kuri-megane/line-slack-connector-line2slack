@@ -79,7 +79,9 @@ def handle_text_message(event):
 
     # slack側に投稿するメッセージの加工
     send_msg = "[bot-line] {user_name}さん\n".format(user_name=user_name) \
-               + "{msg}\n".format(msg=event.message.text)
+               + "{msg}\n".format(msg=event.message.text) \
+               + "---\n" \
+               + "送信元: {msg_type} ( {room_id} )\n".format(msg_type=msg_type, room_id=room_id)
 
     # メッセージの送信
     slack_info.notify(text=send_msg)

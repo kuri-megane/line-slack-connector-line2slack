@@ -72,6 +72,10 @@ def get_event_info(event):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
+    """
+    Text Message の処理
+    """
+
     slack_info = slackweb.Slack(url=WEB_HOOK_LINKS)
 
     # トーク情報の取得
@@ -90,6 +94,10 @@ def handle_text_message(event):
 
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image_message(event):
+    """
+    Image Message の処理
+    """
+
     # トーク情報の取得
     user_id, user_name, msg_type, room_id = get_event_info(event)
 

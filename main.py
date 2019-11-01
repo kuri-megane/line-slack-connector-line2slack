@@ -9,11 +9,11 @@ from linebot.models import MessageEvent, TextMessage, ImageMessage
 
 app = Flask(__name__)
 
+# 認証情報の取得
 CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 WEB_HOOK_LINKS = os.environ["SLACK_WEB_HOOKS_URL"]
 BOT_OAUTH = os.environ["SLACK_BOT_OAUTH"]
-USER_OATH = os.environ["SLACK_USER_OAUTH"]
 POST_CHANEL_ID = os.environ["SLACK_POST_CHANEL_ID"]
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
@@ -109,7 +109,7 @@ def handle_image_message(event):
     # 画像送信
     files = {'file': img}
     param = {
-        'token': USER_OATH,
+        'token': BOT_OAUTH,
         'channels': POST_CHANEL_ID,
         'filename': file_name,
         'initial_comment': send_msg,

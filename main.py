@@ -131,17 +131,12 @@ def handle_sticker_message(event):
     # トーク情報の取得
     user_id, user_name, msg_type, room_id = get_event_info(event)
 
-    # LINEで送信されたスタンプ情報の取得
-    package_id = event.message.package_id
-    sticker_id = event.message.sticker_id
+    # # LINEで送信されたスタンプ情報の取得
+    # package_id = event.message.package_id
+    # sticker_id = event.message.sticker_id
 
     # slack側に投稿するメッセージの加工
-    send_msg = "[bot-line] {user_name}さんがスタンプを送信しました．\n".format(user_name=user_name) \
-               + "package_id: {package_id}\n".format(package_id=package_id) \
-               + "sticker_id: {sticker_id}\n".format(sticker_id=sticker_id) \
-               + "---\n" \
-               + "送信元: {msg_type} ( {room_id} )\n".format(msg_type=msg_type, room_id=room_id) \
-               + "送信者: {user_name} ( {user_id} )".format(user_name=user_name, user_id=user_id)
+    send_msg = "[bot-line] {user_name}さんがスタンプを送信しました．\n".format(user_name=user_name)
 
     # メッセージの送信
     slack_info.notify(text=send_msg)
